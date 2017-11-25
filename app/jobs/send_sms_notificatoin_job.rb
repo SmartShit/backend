@@ -7,7 +7,7 @@ class SendSmsNotificationJob < ApplicationJob
 
     return if sump.nil?
 
-    text = "[SmartShit] Vase zumpa je zaplnena z #{sump.fullness_pct} %. Budete kontaktovat ohledne odvozu."
+    text = "[SmartShit] Vase zumpa je zaplnena z #{sump.sensor.fullness_pct} %. Budete kontaktovat ohledne odvozu."
 
     send_message(sump.phone, text)
   rescue
