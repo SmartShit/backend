@@ -1,6 +1,6 @@
 class SendSmsNotificationJob < ApplicationJob
-  TWILIO_ACCOUNT_SID = 'AC828e90c9fdac988d640253026b07cebd'
-  TWILIO_AUTH_TOKEN = 'b5fdd89e8a9023068c7edf74174ca17d'
+  TWILIO_ACCOUNT_SID = 'AC8f2bee36489c1d78337a8e0afcd71990'
+  TWILIO_AUTH_TOKEN = '6dcc292bf9fb43acb84eabd4e2a7a49c'
 
   def perform(sensor_id)
     sump = Sump.eager_load(:sensor).where('sensors.id = ?', sensor_id).first
@@ -17,9 +17,9 @@ class SendSmsNotificationJob < ApplicationJob
   private
 
   def send_message(phone, text)
-    twilio = Twilio::REST::CLient.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+    twilio = Twilio::REST::Client.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
     twilio.account.messages.create({
-                                       from: '+420777894022',
+                                       from: '+17402004236',
                                        to: phone,
                                        body: text
                                    })
