@@ -8,6 +8,8 @@ class UpdateSensorFromSigfoxJob < ApplicationJob
       sensor.fullness_pct = pct
       sensor.save
     end
+  rescue
+    # ignored
   end
 
   private

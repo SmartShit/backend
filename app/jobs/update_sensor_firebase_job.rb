@@ -8,5 +8,7 @@ class UpdateSensorFirebaseJob < ApplicationJob
     firebase.push("sensors/#{sensor.id}", {
         fullness_pct: sensor.fullness_pct
     })
+  rescue
+    # ignored
   end
 end
