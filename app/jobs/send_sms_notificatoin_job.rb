@@ -18,7 +18,7 @@ class SendSmsNotificationJob < ApplicationJob
 
   def send_message(phone, text)
     twilio = Twilio::REST::Client.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-    twilio.account.messages.create({
+    twilio.messages.create({
                                        from: '+17402004236',
                                        to: phone,
                                        body: text
