@@ -20,6 +20,8 @@ class SumpsController < ApplicationController
   def sump_to_json(sump)
     {
         id: sump.id,
+        latitude: sump.latitude,
+        longitude: sump.longitude,
         name: sump.name,
         address_street: sump.address_street,
         address_city: sump.address_city,
