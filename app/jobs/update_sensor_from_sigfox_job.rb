@@ -24,7 +24,7 @@ class UpdateSensorFromSigfoxJob < ApplicationJob
 
     puts "Sigfox data: request = #{request_type.to_s(16)}, mode = #{operational_mode.to_s(16)}"
 
-    if request_type == 0x3 and [0x3, 0x4].include? operational_mode
+    if request_type == 0x3 and [0x3, 0x4].include? operational_mode and data.length == 8
       x = (data_i & 0x00FF0000) >> 16
       y = (data_i & 0x0000FF00) >> 8
       z = (data_i & 0x000000FF)
