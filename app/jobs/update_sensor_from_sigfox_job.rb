@@ -63,7 +63,7 @@ class UpdateSensorFromSigfoxJob < ApplicationJob
   end
 
   def radians_to_pct(radians)
-    pct = (100 * radians / (Math::PI / 2)).round.abs
+    pct = (Math.sin(radians) * 100).round.abs
 
     return 0 if pct < 0
     return 100 if pct > 100
