@@ -1,6 +1,6 @@
 class SumpsController < ApplicationController
   def index
-    sumps = Sump.eager_load(:sensor).all
+    sumps = Sump.eager_load(:sensor).order('id ASC')
 
     response = sumps.map do |sump|
       sump.to_sump_json

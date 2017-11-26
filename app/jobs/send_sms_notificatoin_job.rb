@@ -7,7 +7,7 @@ class SendSmsNotificationJob < ApplicationJob
 
     return if sump.nil?
 
-    text = "[SmartShit] Vase zumpa je zaplnena z #{sump.sensor.fullness_pct} %. Budete kontaktovat ohledne odvozu."
+    text = "[SmartShit] Vase zumpa je zaplnena z #{sump.sensor.fullness_pct} %. Budeme Vas kontaktovat ohledne odvozu."
 
     send_message(sump.phone, text)
   rescue
@@ -16,12 +16,15 @@ class SendSmsNotificationJob < ApplicationJob
 
   private
 
-  def send_message(phone, text)
+  def send_message(phones, text)
     twilio = Twilio::REST::Client.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-    twilio.messages.create({
-                                       from: '+17402004236',
-                                       to: phone,
-                                       body: text
-                                   })
+
+    phones.split(',').each do |phone|
+      twilio.messages.create({
+                                 from: '+17402004236',
+                                 to: phone,
+                                 body: text
+                             })
+    end
   end
 end
